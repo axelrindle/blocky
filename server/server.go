@@ -138,8 +138,8 @@ func NewServer(cfg *config.Config) (server *Server, err error) {
 	}
 
 	if len(httpListeners) != 0 || len(httpsListeners) != 0 {
-		metrics.Start(httpRouter, cfg.Prometheus)
-		metrics.Start(httpsRouter, cfg.Prometheus)
+		metrics.Start(httpRouter, cfg.Metrics)
+		metrics.Start(httpsRouter, cfg.Metrics)
 	}
 
 	metrics.RegisterEventListeners()

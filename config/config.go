@@ -408,7 +408,7 @@ type Config struct {
 	ClientLookup    ClientLookupConfig        `yaml:"clientLookup"`
 	Caching         CachingConfig             `yaml:"caching"`
 	QueryLog        QueryLogConfig            `yaml:"queryLog"`
-	Prometheus      PrometheusConfig          `yaml:"prometheus"`
+	Metrics         MetricsConfig             `yaml:"metrics"`
 	Redis           RedisConfig               `yaml:"redis"`
 	LogLevel        log.Level                 `yaml:"logLevel" default:"info"`
 	LogFormat       log.FormatType            `yaml:"logFormat" default:"text"`
@@ -440,6 +440,10 @@ type bootstrapConfig struct {
 type PrometheusConfig struct {
 	Enable bool   `yaml:"enable" default:"false"`
 	Path   string `yaml:"path" default:"/metrics"`
+}
+
+type MetricsConfig struct {
+	Prometheus PrometheusConfig `yaml:"prometheus"`
 }
 
 // UpstreamConfig upstream server configuration

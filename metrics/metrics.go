@@ -17,12 +17,13 @@ func RegisterMetric(c prometheus.Collector) {
 	_ = reg.Register(c)
 }
 
-// Start starts prometheus endpoint
-func Start(router *chi.Mux, cfg config.PrometheusConfig) {
-	if cfg.Enable {
+// Start starts metrics endpoint
+func Start(router *chi.Mux, cfg config.MetricsConfig) {
+	// Prometheus metrics
+	if cfg.Prometheus.Enable {
 		_ = reg.Register(collectors.NewProcessCollector(collectors.ProcessCollectorOpts{}))
 		_ = reg.Register(collectors.NewGoCollector())
-		router.Handle(cfg.Path, promhttp.InstrumentMetricHandler(reg,
+		router.Handle(cfg.Prometheus.Path, promhttp.InstrumentMetricHandler(reg,
 			promhttp.HandlerFor(reg, promhttp.HandlerOpts{})))
 	}
 }
