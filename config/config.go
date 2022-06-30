@@ -442,8 +442,18 @@ type PrometheusConfig struct {
 	Path   string `yaml:"path" default:"/metrics"`
 }
 
+// InfluxConfig contains the config values for InfluxDB
+type InfluxConfig struct {
+	Enable       bool   `yaml:"enable" default:"false"`
+	Url          string `yaml:"url"`
+	Token        string `yaml:"token"`
+	Organization string `yaml:"organization"`
+	Bucket       string `yaml:"bucket"`
+}
+
 type MetricsConfig struct {
 	Prometheus PrometheusConfig `yaml:"prometheus"`
+	Influx     InfluxConfig     `yaml:"influx"`
 }
 
 // UpstreamConfig upstream server configuration
